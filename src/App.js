@@ -1,24 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useSelector, useDispatch } from "react-redux";
+import { incNumber, decNumber } from "./actions/index";
+import { mult, divide } from "./actions/index";
 
 function App() {
+  const myState = useSelector((state) => state.changeTheNumber);
+  const myState2 = useSelector((state) => state.multiAndDivi);
+
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <>
+    <div className="container">
+      <h1>Welcome to My Counter</h1>
+      <div>
+        <button
+          title="Increment"
+          onClick={() => {
+            dispatch(incNumber());
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          +
+        </button>
+        <input type="text" value={myState} />
+        <button
+          title="Decrement"
+          onClick={() => {
+            dispatch(decNumber(5));
+          }}
+        >
+          -
+        </button>
+      </div>
     </div>
+
+
+    <div>
+      <h1>Welcome to My Calculator</h1>
+      <div>
+        <button
+          title="Multiply"
+          onClick={() => {
+            dispatch(mult(5));
+          }}
+        >
+          *
+        </button>
+        <input type="text" value={myState2} />
+        <button
+          title="Divide"
+          onClick={() => {
+            dispatch(divide(5));
+          }}
+        >
+          /
+        </button>
+      </div>
+    </div>
+    </>
   );
 }
 
